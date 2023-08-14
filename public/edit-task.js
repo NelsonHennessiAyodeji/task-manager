@@ -13,12 +13,12 @@ const showTask = async () => {
     const task = await (
       await fetch(`/api/v1/tasks/${id}`, { method: 'GET' })
     ).json();
-    const { _id: taskID, completed, name } = task;
+    const { _id: taskID, isCompleted, name } = task;
 
     taskIDDOM.textContent = taskID;
     taskNameDOM.value = name;
     tempName = name;
-    if (completed) {
+    if (isCompleted) {
       taskCompletedDOM.checked = true;
     }
   } catch (error) {
@@ -38,19 +38,19 @@ editFormDOM.addEventListener('submit', async (e) => {
     const task = await fetch(`/api/v1/tasks/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: taskName, completed: taskCompleted })
+      body: JSON.stringify({ name: taskName, isCompleted: taskCompleted })
     });
 
-    const { _id: taskID, completed, name } = await task.json();
+    const { _id: taskID, isCompleted, name } = await task.json();
 
     taskIDDOM.textContent = taskID;
     taskNameDOM.value = name;
     tempName = name;
-    if (completed) {
+    if (isCompleted) {
       taskCompletedDOM.checked = true;
     }
     formAlertDOM.style.display = 'block';
-    formAlertDOM.textContent = `success, edited task`;
+    formAlertDOM.textContent = `Your task has been successfully added`;
     formAlertDOM.classList.add('text-success');
   } catch (error) {
     console.error(error);

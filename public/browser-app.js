@@ -18,8 +18,8 @@ const showTasks = async () => {
     }
     const allTasks = tasks
       .map((task) => {
-        const { completed, _id: taskID, name } = task;
-        return `<div class="single-task ${completed && 'task-completed'}">
+        const { isCompleted, _id: taskID, name } = task;
+        return `<div class="single-task ${isCompleted && 'task-completed'}">
 <h5><span><i class="far fa-check-circle"></i></span>${name}</h5>
 <div class="task-links">
 
@@ -80,7 +80,7 @@ formDOM.addEventListener('submit', async (e) => {
     showTasks();
     taskInputDOM.value = '';
     formAlertDOM.style.display = 'block';
-    formAlertDOM.textContent = `success, task added`;
+    formAlertDOM.textContent = `Your task has been successfully added`;
     formAlertDOM.classList.add('text-success');
   } catch (error) {
     formAlertDOM.style.display = 'block';

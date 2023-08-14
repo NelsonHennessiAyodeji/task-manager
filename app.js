@@ -14,7 +14,7 @@ app.use(express.json());
 
 //routes
 app.use('/api/v1/tasks', taskRouter);
-app.use(notFound); //if no routes were touched then it runs
+app.use(notFound); //if no routes were touched then it calls "not-found"
 app.use(errorHandlerMiddleware);
 
 const start = async () => {
