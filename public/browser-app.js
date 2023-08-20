@@ -50,7 +50,6 @@ showTasks();
 
 tasksDOM.addEventListener('click', async (e) => {
   const el = e.target;
-  console.log(el);
   if (el.classList.contains('delete-btn')) {
     loadingDOM.style.visibility = 'visible';
     const id = el.dataset.id;
